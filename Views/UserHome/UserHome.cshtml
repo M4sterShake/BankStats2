@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "UserHome";
+    Layout = "~/Views/Shared/UserHome_Layout.cshtml";
+}
+
+@if(true)
+{
+    <p>To get started upload a .csv of your bank statement. This can be exported from your bank's online banking system.</p>
+    using (Html.BeginForm("Upload", "StatementCsv", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="statementCsvFile" />
+        <input type="submit" name="Submit" id="Submit" value="Upload" />
+    }
+}

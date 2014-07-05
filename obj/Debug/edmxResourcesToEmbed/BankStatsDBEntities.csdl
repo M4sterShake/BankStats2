@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankStatsDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BankStatsDBEntities2" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="SystemUsers" EntityType="BankStatsDBModel.SystemUser" />
+    <EntitySet Name="BankTransactions" EntityType="BankStatsDBModel.BankTransaction" />
+    <EntitySet Name="BankAccounts" EntityType="BankStatsDBModel.BankAccount" />
+    <EntitySet Name="TransactionCategories" EntityType="BankStatsDBModel.TransactionCategory" />
+  </EntityContainer>
+  <EntityType Name="SystemUser">
+    <Key>
+      <PropertyRef Name="EmailAddress" />
+    </Key>
+    <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Salt" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="BankTransaction">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+    <Property Type="String" Name="Type" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="PaidIn" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="PaidOut" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="Ballance" Precision="19" Scale="4" />
+    <Property Type="Guid" Name="TransactionID" Nullable="false" />
+    <Property Type="Guid" Name="BankAccountID" Nullable="false" />
+    <Property Type="String" Name="Target" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BankAccount">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Type="String" Name="AccountName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BankAccountNumber" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BankAccountSortCode" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Type="Guid" Name="AccountID" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TransactionCategory">
+    <Key>
+      <PropertyRef Name="TransactionTarget" />
+    </Key>
+    <Property Type="String" Name="TransactionTarget" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TransactionCategory1" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

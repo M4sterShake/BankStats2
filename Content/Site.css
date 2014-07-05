@@ -1,0 +1,190 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+    margin:0;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+#publicContentArea 
+{
+    width:100%;
+    height:100%;
+    background-color:#111;
+}
+
+#detailPane 
+{
+    width:78%;
+    height:100%;
+    background-color:#333;
+    float:left;
+    display:block;
+    color:#DDD;
+}
+
+#menuPane
+{
+    width:22%;
+    height:100%;
+    float:left;
+    display:block;
+    background-image:url('Images/leftShadow.png');
+    background-position-x:right;
+    background-repeat:repeat-y;
+}
+
+#pageContainer 
+{
+    width:100%;
+    height:600px;
+    color:#444;
+    font-family:"open sans",sans-serif,arial;
+}
+
+h1 {
+    font-weight: normal;
+}
+
+h2 {
+    font-weight: normal;
+    font-size:2em;
+}
+
+#mainHeader {
+    padding-left: 15px;
+}
+
+#siteheader 
+{
+    width:22%;
+}
+
+.UserSection 
+{
+    position: absolute;
+    right: 10px;
+}
+
+.pie-chart-container {
+    float:left;
+}
+
+.detailPaneHeader {
+    margin:20px 15px 15px 20px;
+}
+
+#appMenu li:first-child {
+    border-top:1px solid #AAA;
+}
+
+#appMenu li {
+    padding-top:10px;
+    padding-bottom:10px;
+    border-bottom:1px solid #AAA;
+    list-style:none;
+    padding-right:25px;
+    font-size:1.2em;
+}
+
+#appMenu li:hover {
+    background-color:#333;
+    color:#DDD;
+}
+
+#appMenu li a:visited {
+    color:#333;
+}
+
+#appMenu li:hover a:visited {
+    color:#DDD;
+}
+
+
+#appMenu li a {
+    text-decoration:none;
+}
+
+#appMenu li a:visited {
+    
+}
+#appMenu {
+    padding:0;
+    text-align:right;
+    margin-top:40px;
+}
+
+
+/*Statement Categorizer Styles*/
+
+#statementTable td{
+    border:1px solid #DDD;
+}
+
+#statementTable{
+    border:1px solid #DDD;
+}
+
+.category-link {
+    color:#DDD;
+}
+
+.category-link:hover {
+    color:#888;
+}

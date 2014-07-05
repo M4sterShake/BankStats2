@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BankStatsDBModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="BankStatsDBModelStoreContainer">
+          <EntitySet Name="BankAccount" EntityType="BankStatsDBModel.Store.BankAccount" store:Type="Tables" />
+          <EntitySet Name="BankTransactions" EntityType="BankStatsDBModel.Store.BankTransactions" store:Type="Tables" />
+          <EntitySet Name="SystemUsers" EntityType="BankStatsDBModel.Store.SystemUsers" store:Type="Tables" />
+          <EntitySet Name="TransactionCategories" EntityType="BankStatsDBModel.Store.TransactionCategories" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="BankAccount">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="BankAccountNumber" Type="nvarchar" MaxLength="16" />
+          <Property Name="BankAccountSortCode" Type="nvarchar" MaxLength="8" />
+          <Property Name="AccountID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="BankTransactions">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="3" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="PaidIn" Type="money" />
+          <Property Name="PaidOut" Type="money" />
+          <Property Name="Ballance" Type="money" />
+          <Property Name="TransactionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BankAccountID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Target" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="SystemUsers">
+          <Key>
+            <PropertyRef Name="EmailAddress" />
+          </Key>
+          <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Salt" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TransactionCategories">
+          <Key>
+            <PropertyRef Name="TransactionTarget" />
+          </Key>
+          <Property Name="TransactionTarget" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="TransactionCategory" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BankStatsDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BankStatsDBEntities2" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="SystemUsers" EntityType="BankStatsDBModel.SystemUser" />
+          <EntitySet Name="BankTransactions" EntityType="BankStatsDBModel.BankTransaction" />
+          <EntitySet Name="BankAccounts" EntityType="BankStatsDBModel.BankAccount" />
+          <EntitySet Name="TransactionCategories" EntityType="BankStatsDBModel.TransactionCategory" />
+        </EntityContainer>
+        <EntityType Name="SystemUser">
+          <Key>
+            <PropertyRef Name="EmailAddress" />
+          </Key>
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="BankTransaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PaidIn" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="PaidOut" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="Ballance" Precision="19" Scale="4" />
+          <Property Type="Guid" Name="TransactionID" Nullable="false" />
+          <Property Type="Guid" Name="BankAccountID" Nullable="false" />
+          <Property Type="String" Name="Target" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BankAccount">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Type="String" Name="AccountName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BankAccountNumber" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BankAccountSortCode" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="AccountID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TransactionCategory">
+          <Key>
+            <PropertyRef Name="TransactionTarget" />
+          </Key>
+          <Property Type="String" Name="TransactionTarget" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TransactionCategory1" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BankStatsDBModelStoreContainer" CdmEntityContainer="BankStatsDBEntities2">
+          <EntitySetMapping Name="SystemUsers">
+            <EntityTypeMapping TypeName="BankStatsDBModel.SystemUser">
+              <MappingFragment StoreEntitySet="SystemUsers">
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankTransactions">
+            <EntityTypeMapping TypeName="BankStatsDBModel.BankTransaction">
+              <MappingFragment StoreEntitySet="BankTransactions">
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="Ballance" ColumnName="Ballance" />
+                <ScalarProperty Name="PaidOut" ColumnName="PaidOut" />
+                <ScalarProperty Name="PaidIn" ColumnName="PaidIn" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankAccounts">
+            <EntityTypeMapping TypeName="BankStatsDBModel.BankAccount">
+              <MappingFragment StoreEntitySet="BankAccount">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="BankAccountSortCode" ColumnName="BankAccountSortCode" />
+                <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionCategories">
+            <EntityTypeMapping TypeName="BankStatsDBModel.TransactionCategory">
+              <MappingFragment StoreEntitySet="TransactionCategories">
+                <ScalarProperty Name="TransactionCategory1" ColumnName="TransactionCategory" />
+                <ScalarProperty Name="TransactionTarget" ColumnName="TransactionTarget" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="pageContainer">
+        <div class="UserSection">
+            @if (Request.IsAuthenticated)
+            {
+                <strong>@Html.Encode(User.Identity.Name)</strong>
+                @Html.ActionLink("Logout", "Logout", "User");
+            }
+            else
+            {
+                @Html.ActionLink("Register", "Register", "User");
+                <span> | </span>
+                @Html.ActionLink("Login", "Login", "User");   
+            }
+        </div>
+        <div id="menuPane">
+            <div id="siteHeader">
+                <div id="siteLogo">
+                    <h1 id="mainHeader">Bank Stats Analyser</h1>
+                </div>
+            </div>        
+            <ul id="appMenu">
+                <li>@Html.ActionLink("Overview","Statistics","UserHome")</li>
+                <li>@Html.ActionLink("Categorize","Index","Categorizer")</li>
+                <li>Menu Item 3</li>
+                <li>Menu Item 4</li>
+            </ul>
+        </div>
+        <div id="detailPane">
+            @RenderBody()
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="~/Scripts/DisableSelection.js"></script>
+
+        <script type="text/javascript">
+            var isDraggingMenuSide = false;
+
+            var initPage = function () {
+                setupPageDivider();
+                setupPageResizer();
+            }
+
+            var setupPageDivider = function () {
+                //Work out if dragging and set a variable to true if we are.
+                $("#pageContainer")
+                .mousedown(function (e) {
+                    console.log("mousedown");
+                    if (e.pageX > ($("#menuPane").width() - 10) && e.pageX < ($("#menuPane").width() + 10)) {
+                        $(window).mousemove(function (e) {
+                            $("#pageContainer").disableSelection();
+                            isDraggingMenuSide = true;
+                            $(window).unbind("mousemove");
+                        });
+                    }
+                });
+
+                //Stop dragging if we were dragging.
+                $("#pageContainer").mouseup(function () {
+                    console.log("mouseup");
+                    var wasDragging = isDraggingMenuSide;
+                    isDraggingMenuSide = false;
+                    $(window).unbind("mousemove");
+                    $("#pageContainer").enableSelection();
+                });
+
+                //Make the cursor a ew-resize when hovering over the edge of the menu and drag the menu if its being dragged.
+                $("#pageContainer").mousemove(function (e) {
+                    if (e.pageX > ($("#menuPane").width() - 10) && e.pageX < ($("#menuPane").width() + 10)) {
+                        $("#pageContainer").css("cursor", "ew-resize");
+                    }
+                    else {
+                        $("#pageContainer").css("cursor", "auto");
+                    }
+
+                    if (isDraggingMenuSide) {
+                        $("#menuPane").width(e.pageX);
+                        $("#detailPane").width($(window).width() - e.pageX);
+                        $("#pageContainer").css("cursor", "ew-resize");
+                    }
+                });
+            }
+
+            var setupPageResizer = function()
+            {
+                $("#pageContainer").height($(window).height());
+                $("#pageContainer").width($(window).width());
+                $(window).resize(function (e) {
+                    $("#pageContainer").height($(window).height());
+                    $("#pageContainer").width($(window).width());
+                });
+            }
+
+            initPage();
+        </script>
+
+        @Scripts.Render("~/pagespecific")
+
+    </div>
+</body>
+</html>

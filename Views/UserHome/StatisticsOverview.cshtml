@@ -1,0 +1,42 @@
+﻿@model BankStats.Models.UserOverviewModel
+
+@{
+    ViewBag.Title = "Financial Overview";
+    Layout = "~/Views/Shared/UserHome_Layout.cshtml";
+    var bundle = System.Web.Optimization.BundleTable.Bundles.GetBundleFor("~/pagespecific");
+    bundle.Include("~/Scripts/UserHomeOverview.js");
+}
+
+<h2 class="detailPaneHeader">Financial Overview</h2>
+<div id="spent-pie-container" class="pie-chart-container" style="width:49%; height:400px; background-color:#333;"></div>
+<div id="earned-pie-container" class="pie-chart-container" style="width:49%; height:400px; background-color:#333;"></div>
+<div id="ballance-over-time-graph-container" class="full-width-graph-container" style="width:100%; height:400px; background-color:#333;"></div>
+
+<script type="text/javascript">
+    var spentByType = [];
+    var types = []
+
+    window.spentChartData = [
+        @foreach(BankStats.Models.SpendingByTypeModel spending in Model.TransactionsByType.spendingsByType)
+        {
+                <text>["@spending.Type", @spending.PaidOut],</text>       
+        }
+        ['Others', 0]
+    ];
+
+    window.earnedChartData = [
+        @foreach(BankStats.Models.EarningByTypeModel earning in Model.TransactionsByType.earningsByType)
+        {
+                <text>["@earning.Type", @earning.PaidIn],</text>       
+        }
+        ['Others', 0]
+    ];
+
+    window.ballanceOverTimeChartData = [
+        @foreach(BankStats.BankTransaction ballanceOnDate in Model.BallanceByDate.BallanceByDate)
+        {
+            <text>[Date.UTC(@ballanceOnDate.Date.Year, @ballanceOnDate.Date.Month -1, @ballanceOnDate.Date.Day), @ballanceOnDate.Ballance],</text>       
+        }
+       [Date.UTC(@Model.BallanceByDate.BallanceByDate.Last().Date.Year, @Model.BallanceByDate.BallanceByDate.Last().Date.Month -1 , @Model.BallanceByDate.BallanceByDate.Last().Date.Day), @Model.BallanceByDate.BallanceByDate.Last().Ballance]
+    ];
+</script>

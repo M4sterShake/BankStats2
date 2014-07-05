@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankStatsDBModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BankStatsDBModelStoreContainer">
+    <EntitySet Name="BankAccount" EntityType="BankStatsDBModel.Store.BankAccount" store:Type="Tables" />
+    <EntitySet Name="BankTransactions" EntityType="BankStatsDBModel.Store.BankTransactions" store:Type="Tables" />
+    <EntitySet Name="SystemUsers" EntityType="BankStatsDBModel.Store.SystemUsers" store:Type="Tables" />
+    <EntitySet Name="TransactionCategories" EntityType="BankStatsDBModel.Store.TransactionCategories" store:Type="Tables" />
+  </EntityContainer>
+  <EntityType Name="BankAccount">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="BankAccountNumber" Type="nvarchar" MaxLength="16" />
+    <Property Name="BankAccountSortCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="AccountID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="BankTransactions">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="PaidIn" Type="money" />
+    <Property Name="PaidOut" Type="money" />
+    <Property Name="Ballance" Type="money" />
+    <Property Name="TransactionID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BankAccountID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Target" Type="nvarchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="SystemUsers">
+    <Key>
+      <PropertyRef Name="EmailAddress" />
+    </Key>
+    <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Salt" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TransactionCategories">
+    <Key>
+      <PropertyRef Name="TransactionTarget" />
+    </Key>
+    <Property Name="TransactionTarget" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="TransactionCategory" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+</Schema>

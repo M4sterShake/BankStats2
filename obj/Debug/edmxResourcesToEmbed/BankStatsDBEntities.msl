@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankStatsDBModelStoreContainer" CdmEntityContainer="BankStatsDBEntities2">
+    <EntitySetMapping Name="SystemUsers">
+      <EntityTypeMapping TypeName="BankStatsDBModel.SystemUser">
+        <MappingFragment StoreEntitySet="SystemUsers">
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankTransactions">
+      <EntityTypeMapping TypeName="BankStatsDBModel.BankTransaction">
+        <MappingFragment StoreEntitySet="BankTransactions">
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="Ballance" ColumnName="Ballance" />
+          <ScalarProperty Name="PaidOut" ColumnName="PaidOut" />
+          <ScalarProperty Name="PaidIn" ColumnName="PaidIn" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankAccounts">
+      <EntityTypeMapping TypeName="BankStatsDBModel.BankAccount">
+        <MappingFragment StoreEntitySet="BankAccount">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="BankAccountSortCode" ColumnName="BankAccountSortCode" />
+          <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionCategories">
+      <EntityTypeMapping TypeName="BankStatsDBModel.TransactionCategory">
+        <MappingFragment StoreEntitySet="TransactionCategories">
+          <ScalarProperty Name="TransactionCategory1" ColumnName="TransactionCategory" />
+          <ScalarProperty Name="TransactionTarget" ColumnName="TransactionTarget" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

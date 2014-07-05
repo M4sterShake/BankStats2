@@ -1,0 +1,35 @@
+﻿@model BankStats.Models.UserModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Unable to register for some reason, check the marked fields.");
+    <div>
+        <fieldset>
+            <legend>Create a User</legend>
+            <div>@Html.LabelFor(u=>u.Email):</div>
+            <div>
+                @Html.TextBoxFor(u=>u.Email)
+                @Html.ValidationMessageFor(u => u.Email)
+            </div>
+
+            <div>@Html.LabelFor(u=>u.Password):</div>
+            <div>
+                @Html.PasswordFor(u=>u.Password)
+                @Html.ValidationMessageFor(u => u.Password)
+            </div>
+
+            <div>Retype @Html.LabelFor(u=>u.Password):</div>
+            <div>
+                @Html.PasswordFor(u=>u.Password)
+                @Html.ValidationMessageFor(u => u.Password)
+            </div>
+            <input type="submit" value="Sign Up"/>
+        </fieldset>
+    </div>
+}
+<h2>Register</h2>
